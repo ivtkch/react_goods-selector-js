@@ -16,21 +16,20 @@ export const goods = [
 ];
 
 export const App = () => {
-  const [good, setGood] = useState('Jam');
-
+  const [selectedGood, setSelectedGood] = useState('Jam');
   return (
     <main className="section container">
       <h1 className="title is-flex is-align-items-center">
-        {good.length === 0 ? (
+        {selectedGood.length === 0 ? (
           'No goods selected'
         ) : (
           <>
-            {`${good} is selected`}
+            {`${selectedGood} is selected`}
             <button
               data-cy="ClearButton"
               type="button"
               className="delete ml-3"
-              onClick={() => setGood('')}
+              onClick={() => setSelectedGood('')}
             />
           </>
         )}
@@ -38,19 +37,20 @@ export const App = () => {
 
       <table className="table">
         <tbody>
-          {goods.map(elem => {
+          {goods.map(good => {
             return (
               <tr
+                key={good}
                 data-cy="Good"
-                className={elem === good ? 'has-background-success-light' : ''}
+                className={good === selectedGood ? 'has-background-success-light' : ''}
               >
                 <td>
-                  {elem === good ? (
+                  {good === selectedGood ? (
                     <button
                       data-cy="RemoveButton"
                       type="button"
                       className="button is-info"
-                      onClick={() => setGood('')}
+                      onClick={() => setSelectedGood('')}
                     >
                       -
                     </button>
@@ -59,7 +59,7 @@ export const App = () => {
                       data-cy="AddButton"
                       type="button"
                       className="button"
-                      onClick={() => setGood(elem)}
+                      onClick={() => setSelectedGood(good)}
                     >
                       +
                     </button>
@@ -67,7 +67,7 @@ export const App = () => {
                 </td>
 
                 <td data-cy="GoodTitle" className="is-vcentered">
-                  {elem}
+                  {good}
                 </td>
               </tr>
             );
