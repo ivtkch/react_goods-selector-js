@@ -17,6 +17,7 @@ export const goods = [
 
 export const App = () => {
   const [selectedGood, setSelectedGood] = useState('Jam');
+
   return (
     <main className="section container">
       <h1 className="title is-flex is-align-items-center">
@@ -42,7 +43,9 @@ export const App = () => {
               <tr
                 key={good}
                 data-cy="Good"
-                className={good === selectedGood ? 'has-background-success-light' : ''}
+                className={
+                  good === selectedGood ? 'has-background-success-light' : ''
+                }
               >
                 <td>
                   {good === selectedGood ? (
